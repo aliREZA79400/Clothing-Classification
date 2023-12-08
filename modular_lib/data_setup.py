@@ -4,6 +4,7 @@ from torchvision import datasets
 from torch.utils.data import DataLoader
 from pathlib import Path
 import torch
+import os
 
 def creat_dataloaders(train_path : None,
                       test_path : None,
