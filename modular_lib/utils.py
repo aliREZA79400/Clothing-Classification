@@ -1,5 +1,6 @@
 import pathlib
 import torch
+from tqdm.auto import tqdm
 from pathlib import Path
 
 def save_model(model,
@@ -13,25 +14,51 @@ def save_model(model,
   print("model saved")
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
+#################################################################
 def return_loaded_model(base_model:torch.nn.Module,
-               input_shape:int,
-               output_shape :int,
-               hidden_units:int,
-               model_save_path : str,
-               model:str):
-  torch.manual_seed(42)
+               input_shape:int = None,
+               output_shape :int=None,
+               hidden_units:int=None,
+               model_save_path : str=None):
+    torch.manual_seed(42)
+    if input_shape and output_shape and hidden_units is not None:
+        model = base_model(input_shape = input_shape,
+                            output_shape = output_shape,
+                            hidden_units = hidden_units)
+        model.load_state_dict(torch.load(f = model_save_path)) 
+        return model.to(device)
+    else:
+        base_model.load_state_dict(torch.load(f = model_save_path))
+        return base_model.to(device)
+###################################################################
+def eval_model(model : torch.nn,
+               dataloader : torch.utils.data.DataLoader,
+               loss_fn : torch.nn ,
+               metric_func : None,
+               device : None):
+    model.eval()
+    with torch.inference_mode():
+        loss_eval = []
+        accuracy_eval=[]
+        for batch , (X ,y) in tqdm(enumerate(dataloader)):
+            X , y  = X.to(device) , y.to(device)
 
-  model = base_model(input_shape = input_shape,
-                     output_shape = output_shape,
-                     hidden_units = hidden_units)
-  
-  model.load_state_dict(torch.load(f = model_save_path))
+            y_pred_logit = model(X)
 
+            loss = loss_fn(y_pred_logit , y).cpu().detach().numpy()
 
-  return model.to(device)
+            loss_eval.append(loss)
 
-################################################################################################
+            y_pred_label = torch.argmax(torch.softmax(y_pred_logit , dim = 1), dim =1)
+
+            accuracy= metric_func(y.cpu(), y_pred_label.cpu())
+            print(f"Loss : {loss} , Accuracy : {accuracy}")
+            accuracy_eval.append(accuracy)
+        
+    
+    return accuracy_eval , loss_eval
+
+###########################################################################################
 from torch.utils.tensorboard import SummaryWriter
 
 # Create a writer with all default settings
@@ -75,3 +102,5 @@ def create_writer(experiment_name: str,
         
     print(f"[INFO] Created SummaryWriter, saving to: {log_dir}...")
     return SummaryWriter(log_dir=log_dir)
+
+
