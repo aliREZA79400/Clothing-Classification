@@ -1,4 +1,4 @@
 
-# Image_Classification_Project
-=======
+# Simple Image_Classification_Project
+
 
