@@ -21,14 +21,6 @@ The comparison focuses on:
 - Inference time
 - Practical deployment considerations
 
-## Dataset
-
-The project uses the `clothing-dataset-small` which is organized as follows:
-    clothing-dataset-small/
-    ├── train/
-    ├── test/
-    └── validation/
-
 ## Key Findings
 
 ### Model Comparison
@@ -68,15 +60,16 @@ EfficientNet-B2 is selected as the better model for this application due to:
 ## Project Structure
 
 Vision_Project/
-├── clothing-dataset-small/
-│   ├── train/
-│   ├── test/
-│   └── validation/
-├── Models/
-│   ├── efficientnet_b2.pth
-│   └── vit_b_16.pth
-└── Vision.ipynb
-```
+    ```
+    ├── clothing-dataset-small/
+    │   ├── train/
+    │   ├── test/
+    │   └── validation/
+    ├── Models/
+    │   ├── efficientnet_b2.pth
+    │   └── vit_b_16.pth
+    └── Vision.ipynb
+    ```
 
 ## Getting Started
 
