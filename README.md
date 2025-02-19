@@ -89,13 +89,3 @@ The EfficientNet-B2 model is recommended for deployment due to its smaller size 
 
 MIT
 
-## Contributors
-
-[Add contributor information here]
-
-## Acknowledgments
-
-- PyTorch team
-- TorchVision contributors
-- [Add any other acknowledgments]
-
