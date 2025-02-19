@@ -58,7 +58,7 @@ EfficientNet-B2 is selected as the better model for this application due to:
 - sklearn
 
 ## Project Structure
-
+```bash
 Vision_Project/
     ├── clothing-dataset-small/
     │   ├── train/
@@ -68,7 +68,7 @@ Vision_Project/
     │   ├── efficientnet_b2.pth
     │   └── vit_b_16.pth
     └── Vision.ipynb
-
+```
 
 ## Getting Started
 
