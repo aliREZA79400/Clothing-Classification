@@ -11,6 +11,7 @@ A deep learning project comparing EfficientNet-B2 and Vision Transformer (ViT) m
 ## Project Overview
 
 This project implements and compares two state-of-the-art deep learning architectures for clothing classification:
+- building Alexnet from scratch
 - EfficientNet-B2
 - Vision Transformer (ViT-B/16)
 
@@ -86,7 +87,7 @@ The EfficientNet-B2 model is recommended for deployment due to its smaller size 
 
 ## License
 
-[Specify your license here]
+MIT
 
 ## Contributors
 
