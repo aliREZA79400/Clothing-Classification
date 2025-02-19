@@ -59,7 +59,7 @@ EfficientNet-B2 is selected as the better model for this application due to:
 
 ## Project Structure
 
-Vision_Project/
+Vision_Project
     ├── clothing-dataset-small/
     │   ├── train/
     │   ├── test/
