@@ -1,7 +1,7 @@
 # Vision Project - Clothing Classification
 
 A deep learning project comparing EfficientNet-B2 and Vision Transformer (ViT) models for clothing classification tasks.
-[https://www.learnpytorch.io/]
+[base this course](https://www.learnpytorch.io/)
 
 ## Project Goals
 
